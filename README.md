@@ -1,9 +1,11 @@
-# WTRLibrary
-## How To Code
-1. Highlight code
-2. Ctrl + c
-3. Click on the space you want code to be written in.
-4. Ctrl + v
-5. Ctrl + s
-6. Ctrl + s
-7. Ctrl + s
+# WTR Library Documentation for Reusable Code
+
+Additional Notes:
+
+    public LoaderAndIntakeGroup(Intake intake, Loader loader) {
+        super(new SetIntakePower(intake, 1), new SeeBallRunBelt(loader));   
+    }
+
+NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+  information, see:
+  https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
