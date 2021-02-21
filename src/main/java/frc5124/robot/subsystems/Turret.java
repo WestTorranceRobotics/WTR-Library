@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
-public class Turret extends SubsystemBase {
+public class Turret extends TurretLib {
   private CANSparkMax turretMotor;
   private CANPIDController turretPID;
   private boolean leftLimitReached = false;
@@ -194,4 +194,11 @@ public class Turret extends SubsystemBase {
   @Override
   public void periodic() {
   }
+
+  @Override
+  public void setHome(boolean setHome) {
+    // TODO Auto-generated method stub
+
+  }
+  
 } 

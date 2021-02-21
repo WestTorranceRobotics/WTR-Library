@@ -35,62 +35,69 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 public abstract class DriveTrainLib extends SubsystemBase {
-    public WPI_TalonFX leftLeader;
-    public WPI_TalonFX rightLeader;
-    private WPI_TalonFX leftFollower;
-    private WPI_TalonFX rightFollower;
-    private AHRS gyro;
-    private DifferentialDrive differentialDrive;
-    private DifferentialDriveKinematics kinematics;
-    private DifferentialDriveKinematicsConstraint trajectoryConstraint;
-    private DifferentialDriveOdometry odometry;
-    private PIDController angleController = new PIDController(0.00125,0.00005,0.000005);
-    private ShuffleboardTab debuggingTab;
     
-    private double INCHES_PER_TICK = (18.0f/28.0f) * (10.0f/64.0f) * 6.0f * Math.PI * (1.0f/2048.0f);
-    public double TICKS_PER_INCH = 40 * (1.0/(Math.PI * 6.0) * 2048.0 * (64.0/10.0) * (28.0/18.0));
 
-    public DriveTrainLib() {
+    public AHRS gyro;
+    public DifferentialDrive differentialDrive;
+    public DifferentialDriveKinematics kinematics;
+    public DifferentialDriveKinematicsConstraint trajectoryConstraint;
+    public DifferentialDriveOdometry odometry;
 
-        // leftLeader = new WPI_TalonFX(RobotMap.DriveTrainMap.leftLeaderCanID);
-        // rightLeader = new WPI_TalonFX(RobotMap.DriveTrainMap.rightLeaderCanID);
+     /*
+    
+        When getting values from motors, like encoder ticks, we need to convert those ticks into actual measurement. We can then use 
+        these measurements to determine the robot position on the field using odometory. Odometry is very useful as it can allow
+        to know where the robot is on the field at all times and allow us to make fairly good estimates as where we want the robot
+        travel to.
+    
+    */
 
-        // leftFollower = new WPI_TalonFX(RobotMap.DriveTrainMap.leftFollowerCanID);
-        // leftFollower.follow(leftLeader);
-        // rightFollower = new WPI_TalonFX(RobotMap.DriveTrainMap.rightFollowerCanID);
-        rightFollower.follow(rightLeader);
+    public double INCHES_PER_TICK; //= (18.0f/28.0f) * (10.0f/64.0f) * 6.0f * Math.PI * (1.0f/2048.0f);
+    public double TICKS_PER_INCH; // = 40 * (1.0/(Math.PI * 6.0) * 2048.0 * (64.0/10.0) * (28.0/18.0));
 
-        rightLeader.setNeutralMode(NeutralMode.Brake);
-        rightFollower.setNeutralMode(NeutralMode.Coast);
-        leftLeader.setNeutralMode(NeutralMode.Brake);
-        leftFollower.setNeutralMode(NeutralMode.Coast);
-
-        leftLeader.setInverted(true);
-        
-        rightLeader.setInverted(false);
-
-        leftFollower.setInverted(InvertType.FollowMaster);
-        rightFollower.setInverted(InvertType.FollowMaster); 
-
-        gyro = new AHRS(SPI.Port.kMXP);
-        
-        differentialDrive = new DifferentialDrive(leftLeader, rightLeader);
-        differentialDrive.setSafetyEnabled(true);
-
-        // kinematics = new DifferentialDriveKinematics(RobotMap.DriveTrainMap.kTrackwidth);
-        // trajectoryConstraint = new DifferentialDriveKinematicsConstraint(kinematics, RobotMap.DriveTrainMap.kMaxVelocity);
-        // gyro.reset();
-        // gyro.zeroYaw();
-        // last = gyro.getPitch();
-        // odometry = new DifferentialDriveOdometry(getGyro());
-        // resetOdometry();
-    }
+    /**
+   * Tank drive is the main driving method our team uses for driving the robot. Tank drive is part of the WPI Differential Drive
+   * and more information on tank drive can be found there. For tank drive, we are able to use it as we have 2 joysticks, each 
+   * controlling the power for the left motors and right motors.
+   * 
+   * @param left The power value you are applying to the left motor/speedcontroller. Values range from [-1.0,1.0]. The direction
+   * can depend on how you set the motors up however, postitive is usally forward.
+   * 
+   * @param right The power value you are applying to the right motor/speedcontroller. Values range from [-1.0,1.0]. The direction
+   * can depend on how you set the motors up however, postitive is usally forward.
+   * 
+   */
 
     abstract public void tankDrive(double left, double right);
 
+    /**
+   * Arcade drive is the a driving method that can be used to drive the robot. Arcade drive is part of the WPI Differential Drive
+   * and more information on acrade drive can be found there. For acrade drive, we rarely use it and prefer to use tank drive 
+   * instead. If we wanted to use it, there are a number of possible ways to do it but we stick with tank drive.
+   * 
+   * @param speed The robot's speed value applied to both the motors. Values range from [-1.0,1.0]. Positive is forward. 
+   * 
+   * @param turn The robot's turn rate which rotates the robot around it's z axis. Values range from [-1.0, 1.0]. Positive is 
+   * clockwise.
+   * 
+   */
+
     abstract public void arcadeDrive(double speed, double turn);
 
+    /**
+   * ResetEncoders is a method which is used to reset the ecoder values for the motors. Reseting econder values is important
+   * as we can get incorrect readings on the distance traveled if the motor ecoder values have not been reset properly. Knowing
+   * the encoder values is important which is why reseting is important.
+   * 
+   */
+
     abstract public void resetEncoders();
+
+    /**
+   * ResetOdometry is a method which is used to reset the odometry for our robot. This allows us to set the robot's current position
+   * at (0,0) with rotation also being at 0. 
+   * 
+   */
 
     abstract public void resetOdometry();
 

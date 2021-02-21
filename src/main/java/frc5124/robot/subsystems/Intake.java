@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 
-public class Intake implements Subsystem {
+public class Intake extends IntakeLib {
 
   private Solenoid armSolenoid;         //for pivot of the arm
   private CANSparkMax intakeMotor;          //motor

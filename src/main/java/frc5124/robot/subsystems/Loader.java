@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import edu.wpi.first.wpilibj.smartdashboard.*;
 
-public class Loader extends SubsystemBase {
+public class Loader extends LoaderLib {
   private CANSparkMax topBeltMotor;
   private CANSparkMax bottomBeltMotor;
   AnalogInput motionSensor = new AnalogInput(1);
@@ -99,5 +99,35 @@ public class Loader extends SubsystemBase {
   //This was here when I started so I left it that way.
   @Override
   public void periodic() {    
+  }
+
+  @Override
+  public void runLoader(double power) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void stopLoader(double power) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public boolean detectObject() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public int objectIntaked() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public int getObjectsIntaked() {
+    // TODO Auto-generated method stub
+    return 0;
   }
 }
