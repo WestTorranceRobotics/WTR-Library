@@ -5,48 +5,38 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.loader;
+package frc5124.robot.commands.loadercommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc5124.robot.subsystems.Loader;
 
-public class SeeBallRunBelt extends CommandBase {
+public class ReverseBelt extends CommandBase {
+  /**
+   * Creates a new ReverseBelt.
+   */
+  private Loader loader;
 
-  private Loader m_Loader;
-  private boolean ballSeen = false;
-
-  public  SeeBallRunBelt(Loader subsystem) {
-    m_Loader = subsystem;
-
+  public ReverseBelt(Loader subsystem) {
+    loader = subsystem;
+    addRequirements(loader);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_Loader);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    loader.reverseBelt();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // if (m_Loader.seeBall()) {
-    //   m_Loader.runBelt(RobotMap.LoaderMap.beltSpeed);
-    //   if (!ballSeen) {
-    //   m_Loader.ballIntaked();
-    //   }
-    //   ballSeen = true;
-    // } else {
-    //   m_Loader.stopBelt();
-    //   ballSeen = false;
-    // }
-    // 1000 is just a placeholder, after we test for optimal time we'll replace it
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Loader.stopBelt();
+    loader.stopBelt();
   }
 
   // Returns true when the command should end.
@@ -54,5 +44,4 @@ public class SeeBallRunBelt extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-
 }

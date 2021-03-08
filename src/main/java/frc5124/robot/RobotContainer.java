@@ -36,11 +36,11 @@ import frc5124.robot.commands.auto.RunDistanceForward;
 import frc5124.robot.commands.auto.runpos.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc5124.robot.commands.driveTrain.*;
-import frc5124.robot.commands.intake.*;
-import frc5124.robot.commands.loader.*;
-import frc5124.robot.commands.shooter.*;
-import frc5124.robot.commands.turret.*;
+import frc5124.robot.commands.drivetraincommands.*;
+import frc5124.robot.commands.intakecommands.*;
+import frc5124.robot.commands.loadercommands.*;
+import frc5124.robot.commands.shootercommands.*;
+import frc5124.robot.commands.turretcommands.*;
 import frc5124.robot.subsystems.*;
 
 /**

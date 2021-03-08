@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.turret;
+package frc5124.robot.commands.turretcommands;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -18,6 +18,7 @@ public class TurretTargetByPID extends CommandBase {
    */
   public TurretTargetByPID(Turret subsystem) {
     this.subsystem = subsystem;
+    addRequirements(subsystem);
   }
 
   public void initialize() {

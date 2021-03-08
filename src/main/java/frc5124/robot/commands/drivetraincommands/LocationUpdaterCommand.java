@@ -5,43 +5,57 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.loader;
+package frc5124.robot.commands.drivetraincommands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc5124.robot.subsystems.Loader;
+import java.util.Set;
 
-public class ReverseBelt extends CommandBase {
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc5124.robot.subsystems.*;
+
+public class LocationUpdaterCommand implements Command {
   /**
-   * Creates a new ReverseBelt.
+   * Creates a new LocationUpdaterCommand.
    */
-  private Loader loader;
+  CanDriveTrain driveTrain;
+  NetworkTableEntry xSlider;
+  NetworkTableEntry ySlider;
 
-  public ReverseBelt(Loader subsystem) {
-    loader = subsystem;
-    addRequirements(loader);
+  public LocationUpdaterCommand(CanDriveTrain driveTrain, NetworkTableEntry xSlider, NetworkTableEntry ySlider) {
+    this.driveTrain = driveTrain;
+    this.xSlider = xSlider;
+    this.ySlider = ySlider;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    loader.reverseBelt();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    xSlider.setDouble(driveTrain.getLocation().getTranslation().getX());
+    ySlider.setDouble(driveTrain.getLocation().getTranslation().getY());
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    loader.stopBelt();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  @Override
+  public Set<Subsystem> getRequirements() {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

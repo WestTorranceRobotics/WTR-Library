@@ -5,20 +5,28 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.shooter;
+package frc5124.robot.commands.shootercommands;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc5124.robot.subsystems.Shooter;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc5124.robot.subsystems.Loader;
 
 
-public class ShootTuner extends CommandBase {
+
+public class ShootFromLine extends CommandBase {
   private Shooter m_shooter;
+  private Loader m_loader;
+
 
   /**
    * Creates a new setShootVelocity.
    */
-  public ShootTuner (Shooter shooter) {
+  public ShootFromLine (Shooter shooter, Loader loader) {
     m_shooter = shooter;
+    m_loader = loader;
+    addRequirements(m_loader);
     addRequirements(m_shooter);
   }
 
@@ -26,12 +34,19 @@ public class ShootTuner extends CommandBase {
   @Override
   public void initialize() {
     //m_shooter.startShooter(RobotMap.ShooterMap.lineShootRPM);
+    // SmartDashboard.putBoolean("ShooterRunning", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  m_shooter.updatePID();
+    // if (m_shooter.atSpeed()) {
+    //   m_shooter.currentWatch(RobotMap.ShooterMap.lineShootRPM);
+    // }
+    // if (m_shooter.getVelocity() >= RobotMap.ShooterMap.lineShootRPM + 5 && m_loader.getAppliedOutput() == 0) {
+    //   m_loader.runBelt(.75);
+    //   m_shooter.atSpeed(true);
+    // } 
   }
   // Returns true when the command should end.
     @Override
@@ -42,7 +57,10 @@ public class ShootTuner extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    // SmartDashboard.putBoolean("ShooterRunning", false);
     m_shooter.stopShooter();
+    m_loader.stopBelt();
+    m_shooter.atSpeed(false);
   }
   
 }

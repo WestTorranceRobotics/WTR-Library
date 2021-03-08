@@ -5,14 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.turret;
+package frc5124.robot.commands.turretcommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc5124.robot.subsystems.Turret;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj2.command.button.*;
-import edu.wpi.first.wpilibj2.command.button.POVButton;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TurretTargetByPIDPerpetually extends CommandBase {
   private Turret subsystem;
@@ -22,7 +19,7 @@ public class TurretTargetByPIDPerpetually extends CommandBase {
   public TurretTargetByPIDPerpetually(Turret subsystem) {
   
     this.subsystem = subsystem;
-    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.

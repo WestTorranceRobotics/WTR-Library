@@ -5,27 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.intake;
+package frc5124.robot.commands.turretcommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc5124.robot.subsystems.Intake;
+import edu.wpi.first.networktables.NetworkTableInstance;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SetIntakePower extends CommandBase {
-  private Intake intake;
-  private double power;
+//Good for club documentation. Not exactly good for library
+
+public class toggleLimeLight extends CommandBase {
   /**
-   * Creates a new setIntakePower.
+   * Creates a new toggleLimeLight.
    */
-  public SetIntakePower(Intake subsystem, double power) {
-    intake = subsystem;
-    addRequirements(intake);
-    this.power = power;
+  public toggleLimeLight() {
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intake.setIntakePower(power);
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setDouble(0.0);
+    // SmartDashboard.putBoolean("LimeLightOn", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,17 +32,16 @@ public class SetIntakePower extends CommandBase {
   public void execute() {
   }
 
-  // Returns true when the command should end.
-  @Override
-    public boolean isFinished() {
-      return false;
-    }
-
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intake.setIntakePower(0);
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setDouble(1.0);
+    // SmartDashboard.putBoolean("LimeLightOn", false);
   }
 
-  
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
 }

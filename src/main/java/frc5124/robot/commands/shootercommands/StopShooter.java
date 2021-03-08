@@ -5,41 +5,46 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.turret;
+package frc5124.robot.commands.shootercommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.networktables.NetworkTableInstance;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc5124.robot.subsystems.Intake;
+import frc5124.robot.subsystems.Loader;
+import frc5124.robot.subsystems.Shooter;
 
-public class toggleLimeLight extends CommandBase {
+public class StopShooter extends CommandBase {
+  private Shooter m_shooter;
+ 
+  
   /**
-   * Creates a new toggleLimeLight.
+   * Creates a new setShootVelocity.
    */
-  public toggleLimeLight() {
+  public StopShooter (Shooter shooter) {
+    m_shooter = shooter;
+    addRequirements(m_shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setDouble(0.0);
-    // SmartDashboard.putBoolean("LimeLightOn", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    m_shooter.directPower(0);
   }
+
+  // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+      return false;
+    }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setDouble(1.0);
-    // SmartDashboard.putBoolean("LimeLightOn", false);
+    m_shooter.directPower(0);
   }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+  
 }

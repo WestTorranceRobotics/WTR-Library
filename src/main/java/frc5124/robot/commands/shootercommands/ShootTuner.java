@@ -5,18 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.shooter;
+package frc5124.robot.commands.shootercommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc5124.robot.subsystems.Shooter;
 
-public class SetShootRPM extends CommandBase {
+
+public class ShootTuner extends CommandBase {
   private Shooter m_shooter;
-  
+
   /**
    * Creates a new setShootVelocity.
    */
-  public SetShootRPM (Shooter shooter) {
+  public ShootTuner (Shooter shooter) {
     m_shooter = shooter;
     addRequirements(m_shooter);
   }
@@ -24,12 +25,13 @@ public class SetShootRPM extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_shooter.startShooter();
+    //m_shooter.startShooter(RobotMap.ShooterMap.lineShootRPM);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+  m_shooter.updatePID();
   }
   // Returns true when the command should end.
     @Override

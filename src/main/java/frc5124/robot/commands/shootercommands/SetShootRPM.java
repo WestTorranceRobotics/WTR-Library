@@ -5,41 +5,42 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.turret;
+package frc5124.robot.commands.shootercommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc5124.robot.subsystems.Turret;
+import frc5124.robot.subsystems.Shooter;
 
-public class setTurretDegrees extends CommandBase {
-  private Turret turret;
-  private double degrees;
+public class SetShootRPM extends CommandBase {
+  private Shooter m_shooter;
+  
   /**
-   * Creates a new setTurretDegrees.
+   * Creates a new setShootVelocity.
    */
-  public setTurretDegrees(Turret subsystem, double degrees) {
-    turret = subsystem;
-    this.degrees = degrees;
+  public SetShootRPM (Shooter shooter) {
+    m_shooter = shooter;
+    addRequirements(m_shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    turret.setTurretDegrees(degrees);
+    m_shooter.startShooter();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
   }
+  // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+      return false;
+    }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_shooter.stopShooter();
   }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+  
 }

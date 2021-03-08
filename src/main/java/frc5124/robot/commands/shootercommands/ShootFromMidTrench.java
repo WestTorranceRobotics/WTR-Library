@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.shooter;
+package frc5124.robot.commands.shootercommands;
 
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import edu.wpi.first.wpilibj2.command.Command;
@@ -13,14 +13,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc5124.robot.subsystems.Shooter;
 import frc5124.robot.subsystems.Loader;
 
-public class ShootFromTrench extends CommandBase {
+public class ShootFromMidTrench extends CommandBase {
   private Shooter m_shooter;
   private Loader m_loader;
   
   /**
    * Creates a new setShootVelocity.
    */
-  public ShootFromTrench (Shooter shooter, Loader loader) {
+  public ShootFromMidTrench (Shooter shooter, Loader loader) {
     m_shooter = shooter;
     m_loader = loader;
     addRequirements(m_loader);
@@ -30,16 +30,17 @@ public class ShootFromTrench extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //m_shooter.startShooter(RobotMap.ShooterMap.trenchShootRPM);
+    //m_shooter.startShooter(RobotMap.ShooterMap.midTrenchShootRPM);
+    // SmartDashboard.putBoolean("ShooterRunning", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() { 
     // if (m_shooter.atSpeed()) {
-    //   m_shooter.currentWatch(RobotMap.ShooterMap.trenchShootRPM);
+    //   m_shooter.currentWatch(RobotMap.ShooterMap.midTrenchShootRPM);
     //   }
-    //   if (m_shooter.getVelocity() >= RobotMap.ShooterMap.trenchShootRPM-20 && m_loader.getAppliedOutput() == 0) {
+    //   if (m_shooter.getVelocity() >= RobotMap.ShooterMap.midTrenchShootRPM-20 && m_loader.getAppliedOutput() == 0) {
     //     m_loader.runBelt();
     //     m_shooter.atSpeed(true);
     //   } 
@@ -53,6 +54,7 @@ public class ShootFromTrench extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    // SmartDashboard.putBoolean("ShooterRunning", false);
     m_shooter.stopShooter();
     m_loader.stopBelt();
     m_shooter.atSpeed(false);
