@@ -46,3 +46,40 @@ public class ShootTuner extends CommandBase {
   }
   
 }
+
+// public class StopShooter extends CommandBase {
+//   private Shooter m_shooter;
+ 
+  
+//   /**
+//    * Creates a new setShootVelocity.
+//    */
+//   public StopShooter (Shooter shooter) {
+//     m_shooter = shooter;
+//     addRequirements(m_shooter);
+//   }
+
+//   // Called when the command is initially scheduled.
+//   @Override
+//   public void initialize() {
+//   }
+
+//   // Called every time the scheduler runs while the command is scheduled.
+//   @Override
+//   public void execute() {
+//     m_shooter.directPower(0);
+//   }
+
+//   // Returns true when the command should end.
+//     @Override
+//     public boolean isFinished() {
+//       return false;
+//     }
+
+//   // Called once the command ends or is interrupted.
+//   @Override
+//   public void end(boolean interrupted) {
+//     m_shooter.directPower(0);
+//   }
+  
+// }
