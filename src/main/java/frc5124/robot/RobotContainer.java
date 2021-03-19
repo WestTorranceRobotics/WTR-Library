@@ -106,12 +106,12 @@ public class RobotContainer {
   private void configureButtonBindings(){
     operatorStart.whileHeld(new SetIntakePower(intake, -.6));
     operatorA.whenPressed(new ToggleIntakePivot(intake));
-    operatorB.toggleWhenPressed(new TurretTargetByPIDPerpetually(turret));
+    // operatorB.toggleWhenPressed(new TurretTargetByPIDPerpetually(turret));
     operatorRight.whileHeld(new RotateTurret(turret, false));
     operatorLeft.whileHeld(new RotateTurret(turret, true));
     operatorRB.toggleWhenPressed(new RPMbyFF(shooter, loader, 4400)); //line distance
     operatorLB.toggleWhenPressed(new RPMbyFF(shooter, loader, 4950)); //trench distance
-    operatorY.whileHeld(new RunLoader(loader));
+    operatorY.whileHeld(new RunLoader(loader, 1)); //power placeholder
 
     driverRightTrigger.whenPressed(new ChangeCamera(
       () -> ChangeCamera.lastSelection == ChangeCamera.INTAKE_CAM ? ChangeCamera.CLIMB_CAM : ChangeCamera.INTAKE_CAM)
@@ -122,10 +122,10 @@ public class RobotContainer {
   private void configureDefaultCommands(){
     driveTrain.setDefaultCommand(new JoystickTankDrive(driverLeft, driverRight, driveTrain));
 
-    Command zeroTurret = new TurretZeroAndTurn(turret);
-    autonomies.put("Trench Zero Turret", zeroTurret);
-    autonomies.put("Middle Zero Turret", zeroTurret);
-    autonomies.put("Opposing Trench Zero Turret", zeroTurret);
+    // Command zeroTurret = new TurretZeroAndTurn(turret);
+    // autonomies.put("Trench Zero Turret", zeroTurret);
+    // autonomies.put("Middle Zero Turret", zeroTurret);
+    // autonomies.put("Opposing Trench Zero Turret", zeroTurret);
   }
 
   private void configureShuffleboard() {

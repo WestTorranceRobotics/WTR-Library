@@ -15,10 +15,12 @@ public class RunLoader extends CommandBase {
    * Creates a new ReverseBelt.
    */
   private Loader loader;
+  private double power;
 
-  public RunLoader(Loader subsystem) {
+  public RunLoader(Loader subsystem, double power) {
     loader = subsystem;
     addRequirements(loader);
+    this.power = power;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -26,6 +28,7 @@ public class RunLoader extends CommandBase {
   @Override
   public void initialize() {
     //loader.runBelt(RobotMap.LoaderMap.runLoaderSpeed);
+    loader.setPower(power);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

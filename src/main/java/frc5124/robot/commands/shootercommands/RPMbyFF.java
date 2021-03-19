@@ -32,7 +32,7 @@ public class RPMbyFF extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    loader.ballIntaked(0);
+    loader.ballIntaked();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -49,7 +49,7 @@ public class RPMbyFF extends CommandBase {
       //shooter.currentWatch(RobotMap.ShooterMap.lineShootRPM);
     }
     if (shooter.getVelocity() >= rpm-50 && loader.getAppliedOutput() == 0) {
-      loader.runBelt(1);
+      loader.setPower(1);
       shooter.atSpeed(true);
     } 
   }

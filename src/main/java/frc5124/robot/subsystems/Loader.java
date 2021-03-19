@@ -27,10 +27,10 @@ public class Loader extends SubsystemBase {
   AnalogInput motionSensor = new AnalogInput(1);
   private ShuffleboardTab display;
   private int ballIntaked;
-  private int newBall = 1;
+  private double rpm;
   
   public Loader() { 
-    // topBeltMotor = new CANSparkMax(RobotMap.LoaderMap.topBeltCanId, MotorType.kBrushless);
+    // topBeltMotor = new CAN parkMax(RobotMap.LoaderMap.topBeltCanId, MotorType.kBrushless);
     // bottomBeltMotor = new CANSparkMax(RobotMap.LoaderMap.bottomBeltCanId, MotorType.kBrushless);
     topBeltMotor.restoreFactoryDefaults();
     bottomBeltMotor.restoreFactoryDefaults();
@@ -44,10 +44,6 @@ public class Loader extends SubsystemBase {
 
   public double getAppliedOutput() {
     return topBeltMotor.getAppliedOutput();
-  }
-  
-  public void runBelt(double power) {
-    topBeltMotor.set(power);
   }
     
   public void runBelt() {
@@ -71,7 +67,7 @@ public class Loader extends SubsystemBase {
   }
 
   public double returnRotations() {
-    return 5;
+    return rpm;
     //return topBeltMotor.getEncoder(EncoderType.kHallSensor, RobotMap.neoCounts).getCountsPerRevolution();
   }
 
@@ -85,10 +81,10 @@ public class Loader extends SubsystemBase {
   }
 
   public void ballIntaked(){
-    ballIntaked += newBall;
+    ballIntaked += 1;
   }
 
-  public void ballIntaked(int balls) {
+  public void setballsIntaked(int balls) {
     ballIntaked = balls;
   }
 
@@ -96,7 +92,7 @@ public class Loader extends SubsystemBase {
     return ballIntaked;
   }
 
-  //This was here when I started so I left it that way.
+
   @Override
   public void periodic() {    
   }
