@@ -7,22 +7,12 @@
 
 package frc5124.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.Subsystem;
-
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 public class Shooter extends SubsystemBase {
   private CANSparkMax shootMotorFollower; // = new CANSparkMax(RobotMap.ShooterMap.shootFollowerCanID, MotorType.kBrushless);
@@ -120,7 +110,7 @@ public class Shooter extends SubsystemBase {
   }
 
   /**
-   * @deprecated Unreliable with higher loader speeds at the present
+   * @Deprecated Unreliable with higher loader speeds at the present
    */
   public void currentWatch(double targetRPM) {
     // if (shootMotorLeader.getOutputCurrent() >= RobotMap.ShooterMap.ballCurrent && passedBallCurrent == false) {

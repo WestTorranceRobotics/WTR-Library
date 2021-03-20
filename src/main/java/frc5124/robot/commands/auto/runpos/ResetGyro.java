@@ -8,19 +8,19 @@
 package frc5124.robot.commands.auto.runpos;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc5124.robot.subsystems.CanDriveTrain;
-import frc5124.robot.subsystems.DriveTrainLib;
+// import frc5124.robot.subsystems.CanDriveTrain;
 
+// No Purpose in having file????? Good to add in subsystem lib.
 public class ResetGyro extends CommandBase {
   /**
    * Creates a new resetGyro.
    */
-  private CanDriveTrain m_DriveTrain;
+  // private CanDriveTrain m_DriveTrain;
 
-  public ResetGyro(CanDriveTrain driveTrain) {
-    m_DriveTrain = driveTrain;
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
+  // public ResetGyro(CanDriveTrain driveTrain) {
+  //   m_DriveTrain = driveTrain;
+  //   // Use addRequirements() here to declare subsystem dependencies.
+  // }
 
   // Called when the command is initially scheduled.
   @Override

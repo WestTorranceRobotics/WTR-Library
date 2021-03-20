@@ -27,8 +27,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 
-import frc5124.robot.commands.*;
-
 import frc5124.robot.commands.auto.ChangeCamera;
 
 import frc5124.robot.commands.auto.ShootThreeBalls;

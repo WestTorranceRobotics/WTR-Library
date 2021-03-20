@@ -10,17 +10,10 @@ package frc5124.robot.commands.auto.runpos;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc5124.robot.subsystems.CanDriveTrain;
 
-import java.util.ResourceBundle.Control;
-
-import javax.swing.GroupLayout.ParallelGroup;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 

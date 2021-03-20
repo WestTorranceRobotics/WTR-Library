@@ -10,7 +10,6 @@ package frc5124.robot.commands.auto;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc5124.robot.subsystems.Shooter;
 import frc5124.robot.subsystems.Loader;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class ShootThreeBalls extends CommandBase {
   private Shooter m_shooter;
