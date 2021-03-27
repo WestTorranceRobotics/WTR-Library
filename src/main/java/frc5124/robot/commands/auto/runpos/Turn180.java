@@ -8,7 +8,6 @@
 package frc5124.robot.commands.auto.runpos;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc5124.robot.commands.turret.TurretZeroPosition;
 import frc5124.robot.subsystems.Turret;
 import edu.wpi.first.networktables.NetworkTableInstance;
 

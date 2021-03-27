@@ -5,48 +5,61 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.loader;
+package frc5124.robot.commands.shootercommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc5124.robot.subsystems.Shooter;
 import frc5124.robot.subsystems.Loader;
 
-public class SeeBallRunBelt extends CommandBase {
+public class RPMbyFF extends CommandBase {
 
-  private Loader m_Loader;
-  private boolean ballSeen = false;
+  private Shooter shooter;
+  private double rpm;
+  private Loader loader;
 
-  public  SeeBallRunBelt(Loader subsystem) {
-    m_Loader = subsystem;
+  /**
+   * Creates a new RPMbyFF.
+   */
+  public RPMbyFF(Shooter shooter, Loader loader, double rpm) {
+    this.shooter = shooter;
+    this.rpm = rpm;
+    this.loader = loader;
+
 
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_Loader);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    loader.ballIntaked();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // if (m_Loader.seeBall()) {
-    //   m_Loader.runBelt(RobotMap.LoaderMap.beltSpeed);
-    //   if (!ballSeen) {
-    //   m_Loader.ballIntaked();
-    //   }
-    //   ballSeen = true;
-    // } else {
-    //   m_Loader.stopBelt();
-    //   ballSeen = false;
-    // }
-    // 1000 is just a placeholder, after we test for optimal time we'll replace it
+    double error = shooter.getVelocity() - rpm;
+    double comp = -1.2e-5 * Math.pow(error,3);
+    if (Math.abs(comp) > 0.2) {
+      comp = Math.signum(comp) * 2;
+    }
+    shooter.directVolts(0.147 + 0.0015538 * rpm );
+    
+    if (shooter.atSpeed()) {
+      //shooter.currentWatch(RobotMap.ShooterMap.lineShootRPM);
+    }
+    if (shooter.getVelocity() >= rpm-50 && loader.getAppliedOutput() == 0) {
+      loader.setPower(1);
+      shooter.atSpeed(true);
+    } 
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Loader.stopBelt();
+    shooter.directPower(0);
+    shooter.atSpeed(false);
+    loader.stopBelt();
   }
 
   // Returns true when the command should end.
@@ -54,5 +67,4 @@ public class SeeBallRunBelt extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-
 }

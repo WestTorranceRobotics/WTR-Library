@@ -27,8 +27,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 
-import frc5124.robot.commands.*;
-
 import frc5124.robot.commands.auto.ChangeCamera;
 
 import frc5124.robot.commands.auto.ShootThreeBalls;
@@ -36,11 +34,11 @@ import frc5124.robot.commands.auto.RunDistanceForward;
 import frc5124.robot.commands.auto.runpos.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc5124.robot.commands.driveTrain.*;
-import frc5124.robot.commands.intake.*;
-import frc5124.robot.commands.loader.*;
-import frc5124.robot.commands.shooter.*;
-import frc5124.robot.commands.turret.*;
+import frc5124.robot.commands.drivetraincommands.*;
+import frc5124.robot.commands.intakecommands.*;
+import frc5124.robot.commands.loadercommands.*;
+import frc5124.robot.commands.shootercommands.*;
+import frc5124.robot.commands.turretcommands.*;
 import frc5124.robot.subsystems.*;
 
 /**
@@ -106,12 +104,12 @@ public class RobotContainer {
   private void configureButtonBindings(){
     operatorStart.whileHeld(new SetIntakePower(intake, -.6));
     operatorA.whenPressed(new ToggleIntakePivot(intake));
-    operatorB.toggleWhenPressed(new TurretTargetByPIDPerpetually(turret));
+    // operatorB.toggleWhenPressed(new TurretTargetByPIDPerpetually(turret));
     operatorRight.whileHeld(new RotateTurret(turret, false));
     operatorLeft.whileHeld(new RotateTurret(turret, true));
     operatorRB.toggleWhenPressed(new RPMbyFF(shooter, loader, 4400)); //line distance
     operatorLB.toggleWhenPressed(new RPMbyFF(shooter, loader, 4950)); //trench distance
-    operatorY.whileHeld(new RunLoader(loader));
+    operatorY.whileHeld(new RunLoader(loader, 1)); //power placeholder
 
     driverRightTrigger.whenPressed(new ChangeCamera(
       () -> ChangeCamera.lastSelection == ChangeCamera.INTAKE_CAM ? ChangeCamera.CLIMB_CAM : ChangeCamera.INTAKE_CAM)
@@ -122,10 +120,10 @@ public class RobotContainer {
   private void configureDefaultCommands(){
     driveTrain.setDefaultCommand(new JoystickTankDrive(driverLeft, driverRight, driveTrain));
 
-    Command zeroTurret = new TurretZeroAndTurn(turret);
-    autonomies.put("Trench Zero Turret", zeroTurret);
-    autonomies.put("Middle Zero Turret", zeroTurret);
-    autonomies.put("Opposing Trench Zero Turret", zeroTurret);
+    // Command zeroTurret = new TurretZeroAndTurn(turret);
+    // autonomies.put("Trench Zero Turret", zeroTurret);
+    // autonomies.put("Middle Zero Turret", zeroTurret);
+    // autonomies.put("Opposing Trench Zero Turret", zeroTurret);
   }
 
   private void configureShuffleboard() {

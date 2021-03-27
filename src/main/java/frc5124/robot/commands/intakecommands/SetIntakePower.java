@@ -5,38 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.shooter;
+package frc5124.robot.commands.intakecommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc5124.robot.subsystems.Intake;
-import frc5124.robot.subsystems.Loader;
-import frc5124.robot.subsystems.Shooter;
 
-public class ReverseShooter extends CommandBase {
-  private Shooter m_shooter;
- 
-  
+public class SetIntakePower extends CommandBase {
+  private Intake intake;
+  private double power;
   /**
-   * Creates a new setShootVelocity.
+   * Creates a new setIntakePower.
    */
-  public ReverseShooter (Shooter shooter) {
-    m_shooter = shooter;
-    addRequirements(m_shooter);
+  public SetIntakePower(Intake subsystem, double power) {
+    intake = subsystem;
+    addRequirements(intake);
+    this.power = power;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    intake.setIntakePower(power);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //m_shooter.directPower(RobotMap.ShooterMap.reverseShooter);
   }
 
   // Returns true when the command should end.
-    @Override
+  @Override
     public boolean isFinished() {
       return false;
     }
@@ -44,7 +42,8 @@ public class ReverseShooter extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_shooter.directPower(0);
+    intake.setIntakePower(0);
   }
+
   
 }

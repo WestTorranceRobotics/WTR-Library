@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.turret;
+package frc5124.robot.commands.turretcommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 // import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc5124.robot.subsystems.Turret;
 // import edu.wpi.first.networktables.NetworkTableInstance;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+// NEEDS FURTHER TESTING TO NOT MAKE DEAD METHOD
 
 public class RotateTurret extends CommandBase {
   private Turret turret;
@@ -51,3 +53,40 @@ public class RotateTurret extends CommandBase {
     return false;
   }
 }
+
+
+
+
+// public class setTurretDegrees extends CommandBase {
+//   private Turret turret;
+//   private double degrees;
+//   /**
+//    * Creates a new setTurretDegrees.
+//    */
+//   public setTurretDegrees(Turret subsystem, double degrees) {
+//     turret = subsystem;
+//     this.degrees = degrees;
+//   }
+
+//   // Called when the command is initially scheduled.
+//   @Override
+//   public void initialize() {
+//     turret.setTurretDegrees(degrees);
+//   }
+
+//   // Called every time the scheduler runs while the command is scheduled.
+//   @Override
+//   public void execute() {
+//   }
+
+//   // Called once the command ends or is interrupted.
+//   @Override
+//   public void end(boolean interrupted) {
+//   }
+
+//   // Returns true when the command should end.
+//   @Override
+//   public boolean isFinished() {
+//     return false;
+//   }
+// }

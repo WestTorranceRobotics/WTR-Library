@@ -182,8 +182,12 @@ public class CanDriveTrain extends DriveTrainLib {
         );
     }
 
-    public int getLeftEncoderVal(){
+    public double getLeftEncoderVal(){
         return leftLeader.getSelectedSensorPosition();
+    }
+
+    public double getRightEncoderVal(){
+        return rightLeader.getSelectedSensorPosition();
     }
 
     @Override

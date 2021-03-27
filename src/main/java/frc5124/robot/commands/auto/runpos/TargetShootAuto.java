@@ -7,13 +7,11 @@
 
 package frc5124.robot.commands.auto.runpos;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc5124.robot.subsystems.CanDriveTrain;
 import frc5124.robot.subsystems.Shooter;
 import frc5124.robot.subsystems.Loader;
 import frc5124.robot.subsystems.Turret;
-import frc5124.robot.commands.auto.runpos.*;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:

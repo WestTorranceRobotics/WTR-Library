@@ -5,36 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.turret;
+package frc5124.robot.commands.turretcommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc5124.robot.subsystems.Turret;
+import edu.wpi.first.networktables.NetworkTableInstance;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class setTurretDegrees extends CommandBase {
-  private Turret turret;
-  private double degrees;
+//Good for club documentation. Not exactly good for library
+
+public class toggleLimeLight extends CommandBase {
   /**
-   * Creates a new setTurretDegrees.
+   * Creates a new toggleLimeLight.
    */
-  public setTurretDegrees(Turret subsystem, double degrees) {
-    turret = subsystem;
-    this.degrees = degrees;
-  }
+  public toggleLimeLight() {}
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    turret.setTurretDegrees(degrees);
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setDouble(0.0);
+    // SmartDashboard.putBoolean("LimeLightOn", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setDouble(1.0);
+    // SmartDashboard.putBoolean("LimeLightOn", false);
   }
 
   // Returns true when the command should end.

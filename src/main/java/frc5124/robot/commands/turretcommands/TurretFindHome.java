@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc5124.robot.commands.turret;
+package frc5124.robot.commands.turretcommands;
 
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -17,10 +17,6 @@ public class TurretFindHome extends CommandBase {
   private Turret turret;
   private AnalogInput mag = Turret.mag;
   private boolean isDone;
-
-
-  //in class
-
 
   /**
    * Creates a new TurretFindHome.
