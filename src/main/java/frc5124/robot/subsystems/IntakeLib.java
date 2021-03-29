@@ -21,6 +21,8 @@ public abstract class IntakeLib implements Subsystem {
   public abstract void setIntakePower(double power);
 
   public abstract void flushOut();
+  //needs solenoid for arm pivot
 
-  public abstract double getOutput();
+  public abstract double getVoltage();
+  //in volts
 }
