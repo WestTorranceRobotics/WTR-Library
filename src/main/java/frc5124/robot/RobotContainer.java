@@ -30,7 +30,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc5124.robot.commands.auto.ChangeCamera;
 
 import frc5124.robot.commands.auto.ShootThreeBalls;
-import frc5124.robot.commands.auto.RunDistanceForward;
+import frc5124.robot.commands.auto.RunDistance;
 import frc5124.robot.commands.auto.runpos.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;

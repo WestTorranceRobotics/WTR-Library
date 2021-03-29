@@ -14,7 +14,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class ChangeCamera extends InstantCommand {
-
+  //DOCMENTATION PURPOSES
   public static int lastSelection = 0;
 
   private static final NetworkTableEntry cameraSelection = 
