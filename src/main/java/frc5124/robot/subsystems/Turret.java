@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
-public class Turret extends SubsystemBase {
+public class Turret extends TurretLib {
   private CANSparkMax turretMotor;
   private CANPIDController turretPID;
   private boolean leftLimitReached = false;
@@ -186,4 +186,11 @@ public class Turret extends SubsystemBase {
   @Override
   public void periodic() {
   }
+
+  @Override
+  public void setHome(boolean setHome) {
+    // TODO Auto-generated method stub
+
+  }
+  
 } 
