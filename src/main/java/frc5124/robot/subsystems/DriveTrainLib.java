@@ -87,7 +87,8 @@ public abstract class DriveTrainLib extends SubsystemBase {
     /**
    * ResetEncoders is a method which is used to reset the ecoder values for the motors. Reseting econder values is important
    * as we can get incorrect readings on the distance traveled if the motor ecoder values have not been reset properly. Knowing
-   * the encoder values is important which is why reseting is important.
+   * the encoder values is important which is why reseting is important because it allows us to reset the position of our encoders which 
+   * makes traveling a certain distance easier.
    * 
    */
 
@@ -95,13 +96,27 @@ public abstract class DriveTrainLib extends SubsystemBase {
 
     /**
    * ResetOdometry is a method which is used to reset the odometry for our robot. This allows us to set the robot's current position
-   * at (0,0) with rotation also being at 0. 
+   * at (0,0) with rotation also being at 0 rad. This allows us to reset our position and make that point where the robot is currently
+   * the origin. 
    * 
    */
 
     abstract public void resetOdometry();
+    
+     /**
+   * getLocation returns the location of the robot in reference to it's odometry. this allows us to track the position of the robot on the field by using
+   * odometry. It's helpful when we need to move to a certain location or want to know where our robot is.
+   * 
+   */
 
     abstract public Pose2d getLocation();
+    
+     /**
+   * getLeftEncoderPosition() and getRightEncoderPosition() returns the left encoder ticks and right encoder ticks respectively 
+   * These encoders ticks helps us when caculating how far the robot has traveled. By using encoder positions, we are able to determine 
+   * the distance a robot has traveled by using converting ticks to revolutions to distance traveled.
+   * 
+   */
 
     abstract public double getLeftEncoderPosition();
 
